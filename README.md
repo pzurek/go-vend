@@ -3,7 +3,7 @@ vendengo
 
 A Go library for accessing the Vend API
 
-[![Build Status](https://travis-ci.org/pzurek/vendengo.png)](https://travis-ci.org/pzurek/vendengo)
+[![Build Status](https://travis-ci.org/pzurek/vendengo.png)](https://travis-ci.org/pzurek/vendengo)  
 [![Coverage Status](https://coveralls.io/repos/pzurek/vendengo/badge.png)](https://coveralls.io/r/pzurek/vendengo)
 
 
