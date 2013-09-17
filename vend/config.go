@@ -1,7 +1,6 @@
 package vend
 
 type Config struct {
-	Id                             *string     `json:"id,omitempty"`
 	RetailerId                     *string     `json:"retailer_id,omitempty"`
 	RetailerName                   *string     `json:"retailer_name,omitempty"`
 	AccountState                   *string     `json:"account_state,omitempty"`
