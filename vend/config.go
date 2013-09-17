@@ -25,5 +25,6 @@ type Config struct {
 	DiscountProductId              *string     `json:"discount_product_id,omitempty"`
 	CashierDiscount                *bool       `json:"cashier_discount,omitempty"`
 	EnableLoyalty                  *int        `json:"enable_loyalty,omitempty"`
-	Callbacks                      *Callbacks  `json:"callbacks,omitempty"`
+	// TODO: Delete it or fix it.
+	//Callbacks                      *Callbacks  `json:"callbacks,omitempty"`
 }
