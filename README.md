@@ -13,8 +13,7 @@ A Go library for accessing the Vend API
 _This is my first ever code written in Go, so please forgive the occasional fuck-up._
 
 
-** Usage **
-
+**Usage**
 ```go
 import "github.com/pzurek/vendengo/vend"
 ```
