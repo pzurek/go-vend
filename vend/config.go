@@ -10,7 +10,7 @@ type Config struct {
 	UserName                       *string     `json:"user_name,omitempty"`
 	UserHash                       *string     `json:"user_hash,omitempty"`
 	UserDisplayName                *string     `json:"user_display_name,omitempty"`
-	NotifyUserOfNumpad             *string     `json:"notify_useer_of_numpad,omitempty"`
+	NotifyUserOfNumpad             *bool       `json:"notify_user_of_numpad,omitempty"`
 	AccountType                    *string     `json:"account_type,omitempty"`
 	OutletName                     *string     `json:"outlet_name,omitempty"`
 	OutletId                       *string     `json:"outlet_id,omitempty"`
