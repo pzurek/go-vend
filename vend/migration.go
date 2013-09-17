@@ -5,3 +5,5 @@ type Migration struct {
 	Table   *string `json:"table"`
 	Query   *string `json:"query"`
 }
+
+type Migrations []Migration
