@@ -43,3 +43,10 @@ type Customer struct {
 	CustomField4      *string          `json:"custom_field_4,omitempty"`
 	Contact           *CustomerContact `json:"contact,omitempty"`
 }
+
+type Customers []Customer
+
+type CustomerResponse struct {
+	Pagination *Pagination `json:"pagination,omitempty"`
+	Customers  *Customers  `json:"pagination,omitempty"`
+}
