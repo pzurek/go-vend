@@ -15,5 +15,5 @@ _This is my first ever code written in Go, so please forgive the occasional fuck
 
 **Usage**
 ```go
-import "github.com/pzurek/vendengo/vend"
+import "github.com/pzurek/go-vend/vend"
 ```
