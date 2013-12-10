@@ -29,7 +29,7 @@
    }
 */
 
-package vce
+package vend
 
 type Product struct {
 	Id         *string      `json:"id,omitempty"`

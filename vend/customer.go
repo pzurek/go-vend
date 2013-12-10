@@ -66,9 +66,14 @@ type Customer struct {
 	Contact           *CustomerContact `json:"contact,omitempty"`
 }
 
-type Customers []Customer
+// Contact type used by the Customer type
+type CustomerContact struct {
+	CompanyName *string `json:"company_name,omitempty"`
+	Phone       *string `json:"phone,omitempty"`
+	Email       *string `json:"email,omitempty"`
+}
 
 type CustomerResponse struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Customers  *Customers  `json:"pagination,omitempty"`
+	Customers  *[]Customer `json:"pagination,omitempty"`
 }

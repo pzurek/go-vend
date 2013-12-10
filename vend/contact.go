@@ -28,6 +28,7 @@
 
 package vend
 
+// Generic Contact type used by other types
 type Contact struct {
 	FirstName         *string `json:"first_name,omitempty"`
 	LastName          *string `json:"last_name,omitempty"`

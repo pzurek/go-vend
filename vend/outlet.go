@@ -57,3 +57,8 @@ type Outlet struct {
 	PhysicalState     *string  `json:"physical_state,omitempty"`
 	PhysicalCountryId *string  `json:"physical_country_id,omitempty"`
 }
+
+type OutletResponse struct {
+	Pagination *Pagination `json:"pagination,omitempty"`
+	Outlets    *[]Outlet   `json:"outlets,omitempty"`
+}

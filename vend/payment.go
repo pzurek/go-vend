@@ -11,7 +11,7 @@
    }
 */
 
-package vce
+package vend
 
 type Payment struct {
 	Id     *string  `json:"id,omitempty"`

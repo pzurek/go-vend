@@ -1,4 +1,4 @@
-package vce
+package vend
 
 type Attribute struct {
 	Name  *string `json:"name,omitempty"`

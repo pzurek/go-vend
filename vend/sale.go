@@ -105,7 +105,7 @@
 }
 */
 
-package vce
+package vend
 
 type Sale struct {
 	Id            *string    `json:"id,omitempty"`

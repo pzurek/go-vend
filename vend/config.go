@@ -28,3 +28,7 @@ type Config struct {
 	// TODO: Delete it or fix it.
 	//Callbacks                      *Callbacks  `json:"callbacks,omitempty"`
 }
+
+type ConfigResponse struct {
+	Config *Config `json:"config"`
+}

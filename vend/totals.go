@@ -7,7 +7,7 @@
       }
 */
 
-package vce
+package vend
 
 type Totals struct {
 	Tax   *float64 `json:"total_tax,omitempty"`

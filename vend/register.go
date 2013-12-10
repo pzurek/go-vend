@@ -38,10 +38,15 @@
 }
 */
 
-package vce
+package vend
 
 type Register struct {
 	Id       *string `json:"id,omitempty"`
 	Name     *string `json:"name,omitempty"`
 	OutletId *string `json:"outlet_id,omitempty"`
+}
+
+type RegisterResponse struct {
+	Pagination *Pagination `json:"pagination,omitempty"`
+	Registers  *[]Register `json:"registers,omitempty"`
 }
