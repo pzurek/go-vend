@@ -1,3 +1,31 @@
+/*
+"contact": {
+    "first_name": null,
+    "last_name": null,
+    "company_name": "piotr",
+    "phone": null,
+    "mobile": null,
+    "fax": null,
+    "email": null,
+    "twitter": null,
+    "website": null,
+    "physical_address1": null,
+    "physical_address2": null,
+    "physical_suburb": null,
+    "physical_city": null,
+    "physical_postcode": null,
+    "physical_state": null,
+    "physical_country_id": null,
+    "postal_address1": null,
+    "postal_address2": null,
+    "postal_suburb": null,
+    "postal_city": null,
+    "postal_postcode": null,
+    "postal_state": null,
+    "postal_country_id": null
+  }
+*/
+
 package vend
 
 type Contact struct {
