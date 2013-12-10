@@ -4,9 +4,9 @@ vendengo
 A Go library for accessing the Vend API
 
 **Build Status:**  
-[![Build Status](https://travis-ci.org/pzurek/vendengo.png)](https://travis-ci.org/pzurek/vendengo)  
+[![Build Status](https://travis-ci.org/pzurek/go-vend.png)](https://travis-ci.org/pzurek/go-vend)  
 **Test Coverage:** - Nothing to see here, yet.  
-[![Coverage Status](https://coveralls.io/repos/pzurek/vendengo/badge.png)](https://coveralls.io/r/pzurek/vendengo)
+[![Coverage Status](https://coveralls.io/repos/pzurek/go-vend/badge.png)](https://coveralls.io/r/pzurek/go-vend)
 
 
 **_Disclaimer_:**  
