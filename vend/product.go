@@ -32,15 +32,42 @@
 package vend
 
 type Product struct {
-	Id         *string      `json:"id,omitempty"`
-	Name       *string      `json:"name,omitempty"`
-	Sku        *string      `json:"sku,omitempty"`
-	Quantity   *float64     `json:"quantity,omitempty"`
-	Price      *float64     `json:"price,omitempty"`
-	Tax        *float64     `json:"tax,omitempty"`
-	Discount   *float64     `json:"discount,omitempty"`
-	Loyalty    *float64     `json:"loyalty_value,omitempty"`
-	TaxTotal   *float64     `json:"tax_total,omitempty"`
-	PriceTotal *float64     `json:"price_total,omitempty"`
-	Attributes *[]Attribute `json:"attributes,omitempty"`
+	Id         *string          `json:"id,omitempty"`
+	Name       *string          `json:"name,omitempty"`
+	Sku        *string          `json:"sku,omitempty"`
+	Quantity   *float64         `json:"quantity,omitempty"`
+	Price      *float64         `json:"price,omitempty"`
+	Tax        *float64         `json:"tax,omitempty"`
+	Discount   *float64         `json:"discount,omitempty"`
+	Loyalty    *float64         `json:"loyalty_value,omitempty"`
+	TaxTotal   *float64         `json:"tax_total,omitempty"`
+	PriceTotal *float64         `json:"price_total,omitempty"`
+	Attributes *[]Attribute     `json:"attributes,omitempty"`
+	Inventory  *[]InventoryItem `json:"inventory,omitempty"`
+}
+
+type ProductResponse struct {
+	Pagination *Pagination `json:"pagination,omitempty"`
+	Products   *[]Outlet   `json:"outlets,omitempty"`
+}
+
+type ProductService struct {
+	client *Client
+}
+
+func (s *ProductService) List() ([]Product, *Response, error) {
+	u := "products"
+
+	req, err := s.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	products := new([]Product)
+	resp, err := s.client.Do(req, products)
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return *products, resp, err
 }

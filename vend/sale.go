@@ -108,16 +108,16 @@
 package vend
 
 type Sale struct {
-	Id            *string    `json:"id,omitempty"`
-	RegisterId    *string    `json:"register_id,omitempty"`
-	SaleDate      *string    `json:"sale_date,omitempty"`
-	InvoiceNumber *string    `json:"invoice_number,omitempty"`
-	Note          *string    `json:"note,omitempty"`
-	CustomerName  *string    `json:"customer_name,omitempty"`
-	Customer      *Customer  `json:"customer,omitempty"`
-	UserName      *string    `json:"user_name,omitempty"`
-	Products      *[]Product `json:"register_sale_products,omitempty"`
-	Payments      *[]Payment `json:"register_sale_payments,omitempty"`
-	Totals        *Totals    `json:"totals,omitempty"`
-	Status        *string    `json:"status,omitempty"`
+	Id            *string                `json:"id,omitempty"`
+	RegisterId    *string                `json:"register_id,omitempty"`
+	SaleDate      *string                `json:"sale_date,omitempty"`
+	InvoiceNumber *string                `json:"invoice_number,omitempty"`
+	Note          *string                `json:"note,omitempty"`
+	CustomerName  *string                `json:"customer_name,omitempty"`
+	Customer      *Customer              `json:"customer,omitempty"`
+	UserName      *string                `json:"user_name,omitempty"`
+	Products      *[]RegisterSaleProduct `json:"register_sale_products,omitempty"`
+	Payments      *[]Payment             `json:"register_sale_payments,omitempty"`
+	Totals        *Totals                `json:"totals,omitempty"`
+	Status        *string                `json:"status,omitempty"`
 }

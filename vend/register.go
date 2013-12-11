@@ -50,3 +50,7 @@ type RegisterResponse struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
 	Registers  *[]Register `json:"registers,omitempty"`
 }
+
+type RegisterService struct {
+	client *Client
+}

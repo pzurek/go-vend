@@ -32,3 +32,7 @@ type Config struct {
 type ConfigResponse struct {
 	Config *Config `json:"config"`
 }
+
+type ConfigService struct {
+	client *Client
+}

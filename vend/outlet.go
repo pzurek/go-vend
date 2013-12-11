@@ -62,3 +62,7 @@ type OutletResponse struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
 	Outlets    *[]Outlet   `json:"outlets,omitempty"`
 }
+
+type OutletService struct {
+	client *Client
+}

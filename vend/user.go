@@ -8,3 +8,7 @@ type User struct {
 	OutletName  *string `json:"outlet_,omitempty"`
 	AccountType *string `json:"account_type,omitempty"`
 }
+
+type UserService struct {
+	client *Client
+}
