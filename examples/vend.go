@@ -3,11 +3,12 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/pzurek/vendengo/vend"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/pzurek/go-vend/vend"
 )
 
 // to run:
