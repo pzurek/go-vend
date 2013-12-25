@@ -1,4 +1,4 @@
-vendengo
+go-vend
 ========
 
 A Go library for accessing the Vend API
