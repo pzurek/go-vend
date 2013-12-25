@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/pzurek/go-vend/tools"
 	"github.com/pzurek/go-vend/vend"
-	"github.com/pzurek/vce/tools"
 )
 
 // to run:
