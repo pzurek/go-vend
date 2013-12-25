@@ -3,8 +3,12 @@ vendengo
 
 A Go library for accessing the Vend API
 
-**Build Status:**  
+**Travis CI build status:**  
 [![Build Status](https://travis-ci.org/pzurek/go-vend.png)](https://travis-ci.org/pzurek/go-vend)  
+
+**Drone.io build status**
+[![Build Status](https://drone.io/github.com/pzurek/go-vend/status.png)](https://drone.io/github.com/pzurek/go-vend/latest)  
+
 **Test Coverage:** - Nothing to see here, yet.  
 [![Coverage Status](https://coveralls.io/repos/pzurek/go-github/badge.png)](https://coveralls.io/r/pzurek/go-github)
 
