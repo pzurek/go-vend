@@ -9,7 +9,7 @@ A Go library for accessing the Vend API
 **Drone.io build status**  
 [![Build Status](https://drone.io/github.com/pzurek/go-vend/status.png)](https://drone.io/github.com/pzurek/go-vend/latest)  
 
-**Test Coverage:** - Nothing to see here, yet.  
+**Coveralls.io test coverage:** - Doesn't work - coveralls.io deosn't support Go projects with Travis CI  
 [![Coverage Status](https://coveralls.io/repos/pzurek/go-github/badge.png)](https://coveralls.io/r/pzurek/go-github)
 
 **_Disclaimer_:**  
