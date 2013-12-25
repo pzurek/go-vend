@@ -42,8 +42,10 @@
 
 package vend
 
+import "fmt"
+
 type Outlet struct {
-	Id                *string  `json:"d,omitempty"`
+	Id                *string  `json:"id,omitempty"`
 	RetailerId        *string  `json:"retailer_id,omitempty"`
 	Name              *string  `json:"name,omitempty"`
 	TimeZone          *string  `json:"timezone,omitempty"`
@@ -65,4 +67,48 @@ type OutletResponse struct {
 
 type OutletService struct {
 	client *Client
+}
+
+func (s *OutletService) List() ([]Outlet, error) {
+
+	outlets := make([]Outlet, 0)
+
+	outl, pagination, _, err := s.getOutletPage(1, 50)
+
+	if err != nil {
+		return nil, err
+	}
+
+	outlets = append(outlets, *outl...)
+
+	if pagination != nil {
+		for *pagination.Page < *pagination.Pages {
+			outl, pag, _, err := s.getOutletPage(*pagination.Page+1, 50)
+			if err != nil {
+				return nil, err
+			}
+			pagination = pag
+			outlets = append(outlets, *outl...)
+		}
+	}
+
+	return outlets, err
+}
+
+func (s *OutletService) getOutletPage(p, ps int) (*[]Outlet, *Pagination, *Response, error) {
+	u := fmt.Sprintf("outlets?page=%v&page_size=%v&sort_by=id", p, ps)
+	req, err := s.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	response := new(OutletResponse)
+	resp, err := s.client.Do(req, response)
+	if err != nil {
+		return nil, nil, resp, err
+	}
+
+	pagination := response.Pagination
+	outlets := response.Outlets
+	return outlets, pagination, resp, err
 }

@@ -1,10 +1,10 @@
 /*
  "totals": {
-        "total_tax": 39,
-        "total_price": 260,
-        "total_payment": 299,
-        "total_to_pay": 0
-      }
+  "total_tax": 39,
+  "total_price": 260,
+  "total_payment": 299,
+  "total_to_pay": 0
+}
 */
 
 package vend

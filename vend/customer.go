@@ -22,6 +22,8 @@
 
 package vend
 
+import "fmt"
+
 type Customer struct {
 	Id                *string          `json:"id,omitempty"`
 	Name              *string          `json:"name,omitempty"`
@@ -75,5 +77,53 @@ type CustomerContact struct {
 
 type CustomerResponse struct {
 	Pagination *Pagination `json:"pagination,omitempty"`
-	Customers  *[]Customer `json:"pagination,omitempty"`
+	Customers  *[]Customer `json:"customers,omitempty"`
+}
+
+type CustomerService struct {
+	client *Client
+}
+
+func (s *CustomerService) List() ([]Customer, error) {
+
+	customers := make([]Customer, 0)
+
+	cust, pagination, _, err := s.getCustomerPage(1, 200)
+
+	if err != nil {
+		return nil, err
+	}
+
+	customers = append(customers, *cust...)
+
+	if pagination != nil {
+		for *pagination.Page < *pagination.Pages {
+			cust, pag, _, err := s.getCustomerPage(*pagination.Page+1, 200)
+			if err != nil {
+				return nil, err
+			}
+			pagination = pag
+			customers = append(customers, *cust...)
+		}
+	}
+
+	return customers, err
+}
+
+func (s *CustomerService) getCustomerPage(p, ps int) (*[]Customer, *Pagination, *Response, error) {
+	u := fmt.Sprintf("customers?page=%v&page_size=%v", p, ps)
+	req, err := s.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	custuctResp := new(CustomerResponse)
+	resp, err := s.client.Do(req, custuctResp)
+	if err != nil {
+		return nil, nil, resp, err
+	}
+
+	pagination := custuctResp.Pagination
+	customers := custuctResp.Customers
+	return customers, pagination, resp, err
 }

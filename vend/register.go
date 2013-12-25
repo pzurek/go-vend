@@ -2,7 +2,7 @@
 {
   "id": "02f65d7d-0adc-11e3-a415-bc764e10976c",
   "name": "Main Register",
-  "outlet_id": "6c8f04b3-3110-11e3-a29a-bc305bf5da20",
+  "regset_id": "6c8f04b3-3110-11e3-a29a-bc305bf5da20",
   "print_receipt": "0",
   "email_receipt": "0",
   "ask_for_note_on_save": "1",
@@ -40,10 +40,12 @@
 
 package vend
 
+import "fmt"
+
 type Register struct {
-	Id       *string `json:"id,omitempty"`
-	Name     *string `json:"name,omitempty"`
-	OutletId *string `json:"outlet_id,omitempty"`
+	Id         *string `json:"id,omitempty"`
+	Name       *string `json:"name,omitempty"`
+	RegisterId *string `json:"regset_id,omitempty"`
 }
 
 type RegisterResponse struct {
@@ -53,4 +55,48 @@ type RegisterResponse struct {
 
 type RegisterService struct {
 	client *Client
+}
+
+func (s *RegisterService) List() ([]Register, error) {
+
+	registers := make([]Register, 0)
+
+	regs, pagination, _, err := s.getRegisterPage(1, 50)
+
+	if err != nil {
+		return nil, err
+	}
+
+	registers = append(registers, *regs...)
+
+	if pagination != nil {
+		for *pagination.Page < *pagination.Pages {
+			regs, pag, _, err := s.getRegisterPage(*pagination.Page+1, 50)
+			if err != nil {
+				return nil, err
+			}
+			pagination = pag
+			registers = append(registers, *regs...)
+		}
+	}
+
+	return registers, err
+}
+
+func (s *RegisterService) getRegisterPage(p, ps int) (*[]Register, *Pagination, *Response, error) {
+	u := fmt.Sprintf("registers?page=%v&page_size=%v&sort_by=id", p, ps)
+	req, err := s.client.NewRequest("GET", u, nil)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+
+	response := new(RegisterResponse)
+	resp, err := s.client.Do(req, response)
+	if err != nil {
+		return nil, nil, resp, err
+	}
+
+	pagination := response.Pagination
+	registers := response.Registers
+	return registers, pagination, resp, err
 }

@@ -14,6 +14,12 @@ const (
 	userAgent      = "go-vend/" + libraryVersion
 )
 
+var (
+	store    string
+	username string
+	password string
+)
+
 // Vend client which talks to the Vend API
 type Client struct {
 
@@ -23,30 +29,38 @@ type Client struct {
 
 	Config    *ConfigService
 	Products  *ProductService
+	Taxes     *TaxService
 	Users     *UserService
 	Outlets   *OutletService
 	Registers *RegisterService
+	Customers *CustomerService
 }
 
-func NewClient(httpClient *http.Client) *Client {
+func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
+
+	store = st
+	username = usrname
+	password = passwd
+
 	c := &Client{client: httpClient, UserAgent: userAgent}
 	c.Config = &ConfigService{client: c}
 	c.Products = &ProductService{client: c}
+	c.Taxes = &TaxService{client: c}
 	c.Users = &UserService{client: c}
 	c.Outlets = &OutletService{client: c}
 	c.Registers = &RegisterService{client: c}
+	c.Customers = &CustomerService{client: c}
 
 	return c
 }
 
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
 
-	// for now, right?!
-	u := urlStr
-
+	u := fmt.Sprintf("https://%s.vendhq.com/api/%s", store, urlStr)
+	fmt.Println(u)
 	buf := new(bytes.Buffer)
 	if body != nil {
 		err := json.NewEncoder(buf).Encode(body)
@@ -59,6 +73,8 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 	if err != nil {
 		return nil, err
 	}
+
+	req.SetBasicAuth(username, password)
 
 	req.Header.Add("User-Agent", c.UserAgent)
 

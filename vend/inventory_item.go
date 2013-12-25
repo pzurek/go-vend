@@ -11,9 +11,9 @@
 package vend
 
 type InventoryItem struct {
-	OutletId     *string  `json:"outlet_id,omitempty"`
-	OutletName   *string  `json:"outlet_name,omitempty"`
-	Count        *float64 `json:"count,omitempty"`
-	ReorderPoint *int     `json:"reorder_point,omitempty"`
-	RestockLevel *int     `json:"restock_level,omitempty"`
+	OutletId     *string `json:"outlet_id,omitempty"`
+	OutletName   *string `json:"outlet_name,omitempty"`
+	Count        *string `json:"count,omitempty"`
+	ReorderPoint *string `json:"reorder_point,omitempty"`
+	RestockLevel *string `json:"restock_level,omitempty"`
 }
