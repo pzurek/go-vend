@@ -70,7 +70,7 @@ func (s *TaxService) List() ([]Tax, error) {
 }
 
 func (s *TaxService) getPage(p, ps int) (*[]Tax, *Pagination, *Response, error) {
-	u := fmt.Sprintf("resource?page=%v&page_size=%v&sort_by=id", p, ps)
+	u := fmt.Sprintf("taxes?page=%v&page_size=%v&sort_by=id", p, ps)
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
 		return nil, nil, nil, err
