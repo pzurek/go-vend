@@ -34,6 +34,8 @@ type Migration struct {
 	Query   *string `json:"query"`
 }
 
+type Callback struct{}
+
 type ConfigResponse struct {
 	Config *Config `json:"config"`
 }

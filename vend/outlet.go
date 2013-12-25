@@ -71,31 +71,31 @@ type OutletService struct {
 
 func (s *OutletService) List() ([]Outlet, error) {
 
-	outlets := make([]Outlet, 0)
+	resource := make([]Outlet, 0)
 
-	outl, pagination, _, err := s.getOutletPage(1, 50)
+	rp, pagination, _, err := s.getPage(1, 50)
 
 	if err != nil {
 		return nil, err
 	}
 
-	outlets = append(outlets, *outl...)
+	resource = append(resource, *rp...)
 
 	if pagination != nil {
 		for *pagination.Page < *pagination.Pages {
-			outl, pag, _, err := s.getOutletPage(*pagination.Page+1, 50)
+			rp, pg, _, err := s.getPage(*pagination.Page+1, 50)
 			if err != nil {
 				return nil, err
 			}
-			pagination = pag
-			outlets = append(outlets, *outl...)
+			pagination = pg
+			resource = append(resource, *rp...)
 		}
 	}
 
-	return outlets, err
+	return resource, err
 }
 
-func (s *OutletService) getOutletPage(p, ps int) (*[]Outlet, *Pagination, *Response, error) {
+func (s *OutletService) getPage(p, ps int) (*[]Outlet, *Pagination, *Response, error) {
 	u := fmt.Sprintf("outlets?page=%v&page_size=%v&sort_by=id", p, ps)
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
@@ -109,6 +109,6 @@ func (s *OutletService) getOutletPage(p, ps int) (*[]Outlet, *Pagination, *Respo
 	}
 
 	pagination := response.Pagination
-	outlets := response.Outlets
-	return outlets, pagination, resp, err
+	resource := response.Outlets
+	return resource, pagination, resp, err
 }

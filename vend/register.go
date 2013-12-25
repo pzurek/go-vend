@@ -59,31 +59,31 @@ type RegisterService struct {
 
 func (s *RegisterService) List() ([]Register, error) {
 
-	registers := make([]Register, 0)
+	resource := make([]Register, 0)
 
-	regs, pagination, _, err := s.getRegisterPage(1, 50)
+	regs, pagination, _, err := s.getPage(1, 50)
 
 	if err != nil {
 		return nil, err
 	}
 
-	registers = append(registers, *regs...)
+	resource = append(resource, *regs...)
 
 	if pagination != nil {
 		for *pagination.Page < *pagination.Pages {
-			regs, pag, _, err := s.getRegisterPage(*pagination.Page+1, 50)
+			regs, pg, _, err := s.getPage(*pagination.Page+1, 50)
 			if err != nil {
 				return nil, err
 			}
-			pagination = pag
-			registers = append(registers, *regs...)
+			pagination = pg
+			resource = append(resource, *regs...)
 		}
 	}
 
-	return registers, err
+	return resource, err
 }
 
-func (s *RegisterService) getRegisterPage(p, ps int) (*[]Register, *Pagination, *Response, error) {
+func (s *RegisterService) getPage(p, ps int) (*[]Register, *Pagination, *Response, error) {
 	u := fmt.Sprintf("registers?page=%v&page_size=%v&sort_by=id", p, ps)
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
@@ -97,6 +97,6 @@ func (s *RegisterService) getRegisterPage(p, ps int) (*[]Register, *Pagination, 
 	}
 
 	pagination := response.Pagination
-	registers := response.Registers
-	return registers, pagination, resp, err
+	resource := response.Registers
+	return resource, pagination, resp, err
 }

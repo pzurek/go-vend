@@ -45,32 +45,32 @@ type TaxService struct {
 
 func (s *TaxService) List() ([]Tax, error) {
 
-	taxes := make([]Tax, 0)
+	resource := make([]Tax, 0)
 
-	taxs, pagination, _, err := s.getTaxPage(1, 200)
+	rp, pagination, _, err := s.getPage(1, 200)
 
 	if err != nil {
 		return nil, err
 	}
 
-	taxes = append(taxes, *taxs...)
+	resource = append(resource, *rp...)
 
 	if pagination != nil {
 		for *pagination.Page < *pagination.Pages {
-			taxs, pag, _, err := s.getTaxPage(*pagination.Page+1, 200)
+			rp, pg, _, err := s.getPage(*pagination.Page+1, 200)
 			if err != nil {
 				return nil, err
 			}
-			pagination = pag
-			taxes = append(taxes, *taxs...)
+			pagination = pg
+			resource = append(resource, *rp...)
 		}
 	}
 
-	return taxes, err
+	return resource, err
 }
 
-func (s *TaxService) getTaxPage(p, ps int) (*[]Tax, *Pagination, *Response, error) {
-	u := fmt.Sprintf("taxes?page=%v&page_size=%v&sort_by=id", p, ps)
+func (s *TaxService) getPage(p, ps int) (*[]Tax, *Pagination, *Response, error) {
+	u := fmt.Sprintf("resource?page=%v&page_size=%v&sort_by=id", p, ps)
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
 		return nil, nil, nil, err
@@ -83,6 +83,6 @@ func (s *TaxService) getTaxPage(p, ps int) (*[]Tax, *Pagination, *Response, erro
 	}
 
 	pagination := response.Pagination
-	taxes := response.Taxes
-	return taxes, pagination, resp, err
+	resource := response.Taxes
+	return resource, pagination, resp, err
 }

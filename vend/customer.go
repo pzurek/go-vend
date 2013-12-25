@@ -86,44 +86,44 @@ type CustomerService struct {
 
 func (s *CustomerService) List() ([]Customer, error) {
 
-	customers := make([]Customer, 0)
+	resource := make([]Customer, 0)
 
-	cust, pagination, _, err := s.getCustomerPage(1, 200)
+	rp, pagination, _, err := s.getPage(1, 200)
 
 	if err != nil {
 		return nil, err
 	}
 
-	customers = append(customers, *cust...)
+	resource = append(resource, *rp...)
 
 	if pagination != nil {
 		for *pagination.Page < *pagination.Pages {
-			cust, pag, _, err := s.getCustomerPage(*pagination.Page+1, 200)
+			rp, pg, _, err := s.getPage(*pagination.Page+1, 200)
 			if err != nil {
 				return nil, err
 			}
-			pagination = pag
-			customers = append(customers, *cust...)
+			pagination = pg
+			resource = append(resource, *rp...)
 		}
 	}
 
-	return customers, err
+	return resource, err
 }
 
-func (s *CustomerService) getCustomerPage(p, ps int) (*[]Customer, *Pagination, *Response, error) {
+func (s *CustomerService) getPage(p, ps int) (*[]Customer, *Pagination, *Response, error) {
 	u := fmt.Sprintf("customers?page=%v&page_size=%v", p, ps)
 	req, err := s.client.NewRequest("GET", u, nil)
 	if err != nil {
 		return nil, nil, nil, err
 	}
 
-	custuctResp := new(CustomerResponse)
-	resp, err := s.client.Do(req, custuctResp)
+	response := new(CustomerResponse)
+	resp, err := s.client.Do(req, response)
 	if err != nil {
 		return nil, nil, resp, err
 	}
 
-	pagination := custuctResp.Pagination
-	customers := custuctResp.Customers
-	return customers, pagination, resp, err
+	pagination := response.Pagination
+	resource := response.Customers
+	return resource, pagination, resp, err
 }
