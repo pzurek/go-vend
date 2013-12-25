@@ -3,7 +3,7 @@ package tools
 import "testing"
 
 func Test_PadLeft_1(t *testing.T) {
-	const s, l, p, out = "10", 0, "0", "010"
+	const s, l, p, out = "10", 0, "0", "10"
 	x := PadLeft(s, p, l)
 	if x != out {
 		t.Errorf("PadLeft(%v, %v, %v) = %v, want %v", s, l, p, x, out)
