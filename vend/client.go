@@ -33,6 +33,7 @@ type Client struct {
 	Users     *UserService
 	Outlets   *OutletService
 	Registers *RegisterService
+	Suppliers *SupplierService
 	Customers *CustomerService
 }
 
@@ -52,6 +53,7 @@ func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
 	c.Users = &UserService{client: c}
 	c.Outlets = &OutletService{client: c}
 	c.Registers = &RegisterService{client: c}
+	c.Suppliers = &SupplierService{client: c}
 	c.Customers = &CustomerService{client: c}
 
 	return c

@@ -47,6 +47,11 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	suppliers, err := client.Suppliers.List()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
 	customers, err := client.Customers.List()
 	if err != nil {
 		log.Fatalln(err)
@@ -58,6 +63,7 @@ func main() {
 	fmt.Printf("%v outlets\n", len(outlets))
 	fmt.Printf("%v registers\n", len(registers))
 	fmt.Printf("%v users\n", len(users))
+	fmt.Printf("%v suppliers\n", len(suppliers))
 	fmt.Printf("%v customers\n", len(customers))
 
 	productMap := buildProductMap(products)
