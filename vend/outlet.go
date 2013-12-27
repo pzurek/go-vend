@@ -69,6 +69,7 @@ type OutletService struct {
 	client *Client
 }
 
+// List returns a slice of all outlets
 func (s *OutletService) List() ([]Outlet, error) {
 
 	resource := make([]Outlet, 0)

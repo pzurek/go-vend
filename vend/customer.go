@@ -84,6 +84,7 @@ type CustomerService struct {
 	client *Client
 }
 
+// List returns a slice of all customers
 func (s *CustomerService) List() ([]Customer, error) {
 
 	resource := make([]Customer, 0)

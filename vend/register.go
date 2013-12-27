@@ -57,6 +57,7 @@ type RegisterService struct {
 	client *Client
 }
 
+// List returns a slice of all registers
 func (s *RegisterService) List() ([]Register, error) {
 
 	resource := make([]Register, 0)

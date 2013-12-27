@@ -43,6 +43,7 @@ type TaxService struct {
 	client *Client
 }
 
+// List returns a slice of all taxes
 func (s *TaxService) List() ([]Tax, error) {
 
 	resource := make([]Tax, 0)

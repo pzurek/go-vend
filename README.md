@@ -332,6 +332,8 @@ type CustomerService struct {
 ``` go
 func (s *CustomerService) List() ([]Customer, error)
 ```
+List returns a slice of all customers
+
 
 
 ## type ErrorResponse
@@ -460,6 +462,8 @@ type OutletService struct {
 ``` go
 func (s *OutletService) List() ([]Outlet, error)
 ```
+List returns a slice of all outlets
+
 
 
 ## type Pagination
@@ -612,6 +616,8 @@ type ProductService struct {
 ``` go
 func (s *ProductService) List() ([]Product, error)
 ```
+List returns a slice of all products
+
 
 
 ## type Register
@@ -695,6 +701,8 @@ type RegisterService struct {
 ``` go
 func (s *RegisterService) List() ([]Register, error)
 ```
+List returns a slice of all registers
+
 
 
 ## type Response
@@ -874,6 +882,8 @@ type TaxService struct {
 ``` go
 func (s *TaxService) List() ([]Tax, error)
 ```
+List returns a slice of all taxes
+
 
 
 ## type Totals
@@ -953,6 +963,8 @@ type UserService struct {
 ``` go
 func (s *UserService) List() ([]User, error)
 ```
+List returns a slice of all users
+
 
 
 

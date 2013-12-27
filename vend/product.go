@@ -162,6 +162,7 @@ type ProductService struct {
 	client *Client
 }
 
+// List returns a slice of all products
 func (s *ProductService) List() ([]Product, error) {
 
 	resource := make([]Product, 0)
