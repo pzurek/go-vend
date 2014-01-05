@@ -56,6 +56,7 @@ type SupplierService struct {
 	client *Client
 }
 
+// List returns a slice of all suppliers
 func (s *SupplierService) List() ([]Supplier, error) {
 
 	resource := make([]Supplier, 0)
