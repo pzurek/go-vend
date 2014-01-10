@@ -3,6 +3,9 @@ go-vend
 
 A Go library for accessing the Vend API
 
+**GoDoc reference***
+[![Docs](https://godoc.org/github.com/pzurek/go-vend?status.png)](https://godoc.org/github.com/pzurek/go-vend/vend)
+
 **Travis CI build status:**  
 [![Build Status](https://travis-ci.org/pzurek/go-vend.png)](https://travis-ci.org/pzurek/go-vend)  
   
