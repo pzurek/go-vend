@@ -14,6 +14,9 @@ A Go library for accessing the Vend API
   
 **Coveralls.io test coverage:**  
 [![Coverage Status](https://coveralls.io/repos/pzurek/go-vend/badge.png)](https://coveralls.io/r/pzurek/go-vend)  
+
+**Wercker build status**  
+[![wercker status](https://app.wercker.com/status/db8428210716aab347266c848800e11d/m "wercker status")](https://app.wercker.com/project/bykey/db8428210716aab347266c848800e11d)  
   
 **_Disclaimer_:**  
 _This is my first ever code written in Go, so please forgive the occasional fuck-up._
