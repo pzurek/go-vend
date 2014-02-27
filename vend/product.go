@@ -190,8 +190,8 @@ func (s *ProductService) List() ([]Product, error) {
 }
 
 func (s *ProductService) getPage(p, ps int) (*[]Product, *Pagination, *Response, error) {
-	u := fmt.Sprintf("products?page=%v&page_size=%v&sort_by=id", p, ps)
-	req, err := s.client.NewRequest("GET", u, nil)
+	url := fmt.Sprintf("products?page=%v&page_size=%v&sort_by=id", p, ps)
+	req, err := s.client.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, nil, nil, err
 	}

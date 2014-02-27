@@ -27,89 +27,121 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	taxes, err := client.Taxes.List()
+	newProducts, err := client.NewProducts.List()
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	outlets, err := client.Outlets.List()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// taxes, err := client.Taxes.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	registers, err := client.Registers.List()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// outlets, err := client.Outlets.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	users, err := client.Users.List()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// registers, err := client.Registers.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	suppliers, err := client.Suppliers.List()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// users, err := client.Users.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
-	customers, err := client.Customers.List()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	// suppliers, err := client.Suppliers.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
 
+	// customers, err := client.Customers.List()
+	// if err != nil {
+	// 	log.Fatalln(err)
+	// }
+
+	fmt.Println("--== OLD API ==--")
 	fmt.Println("You have downloaded:")
 	fmt.Printf("%v products\n", len(products))
-	fmt.Printf("%v taxes\n", len(taxes))
-	fmt.Printf("%v outlets\n", len(outlets))
-	fmt.Printf("%v registers\n", len(registers))
-	fmt.Printf("%v users\n", len(users))
-	fmt.Printf("%v suppliers\n", len(suppliers))
-	fmt.Printf("%v customers\n", len(customers))
+	// fmt.Printf("%v taxes\n", len(taxes))
+	// fmt.Printf("%v outlets\n", len(outlets))
+	// fmt.Printf("%v registers\n", len(registers))
+	// fmt.Printf("%v users\n", len(users))
+	// fmt.Printf("%v suppliers\n", len(suppliers))
+	// fmt.Printf("%v customers\n", len(customers))
 
 	productMap := buildProductMap(products)
 	fmt.Printf("%v unique products\n", len(productMap))
 
+	fmt.Println("--== NEW API ==--")
+	fmt.Println("You have downloaded:")
+	fmt.Printf("%v products\n", len(newProducts))
+	newProductMap := buildNewProductMap(newProducts)
+	fmt.Printf("%v unique products\n", len(newProductMap))
+
 	// buildStockLevelsCsv(products, outlets)
 }
 
-func buildProductMap(products []vend.Product) map[string]vend.Product {
-	pMap := make(map[string]vend.Product)
+func buildCustomerMap(customers []vend.Customer) map[string]vend.Customer {
+	tMap := make(map[string]vend.Customer)
 
-	for _, product := range products {
-		pMap[*product.Id] = product
+	for _, customer := range customers {
+		tMap[*customer.Id] = customer
 	}
 
-	return pMap
+	return tMap
+}
+
+func buildProductMap(products []vend.Product) map[string]vend.Product {
+	tMap := make(map[string]vend.Product)
+
+	for _, product := range products {
+		tMap[*product.Id] = product
+	}
+
+	return tMap
+}
+
+func buildNewProductMap(products []vend.NewProduct) map[string]vend.NewProduct {
+	tMap := make(map[string]vend.NewProduct)
+
+	for _, product := range products {
+		tMap[*product.Id] = product
+	}
+
+	return tMap
 }
 
 func buildRegisterMap(registers []vend.Register) map[string]vend.Register {
-	rMap := make(map[string]vend.Register)
+	tMap := make(map[string]vend.Register)
 
 	for _, register := range registers {
-		rMap[*register.Id] = register
+		tMap[*register.Id] = register
 	}
 
-	return rMap
+	return tMap
 }
 
 func buildOutletMap(outlets []vend.Outlet) map[string]vend.Outlet {
-	oMap := make(map[string]vend.Outlet)
+	tMap := make(map[string]vend.Outlet)
 
 	for _, outlet := range outlets {
-		oMap[*outlet.Id] = outlet
+		tMap[*outlet.Id] = outlet
 	}
 
-	return oMap
+	return tMap
 }
 
 func buildInvenotryMap(inventoryItems []vend.InventoryItem) map[string]vend.InventoryItem {
-	iMap := make(map[string]vend.InventoryItem)
+	tMap := make(map[string]vend.InventoryItem)
 
 	for _, item := range inventoryItems {
-		iMap[*item.OutletId] = item
+		tMap[*item.OutletId] = item
 	}
 
-	return iMap
+	return tMap
 }
 
 func buildStockLevelsCsv(products []vend.Product, outlets []vend.Outlet) {

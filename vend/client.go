@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	baseUrlString  = "vendhq.com/api/"
+	baseUrlString  = ".vendhq.com/api/"
 	libraryVersion = "0.1"
 	userAgent      = "go-vend/" + libraryVersion
 )
@@ -27,14 +27,15 @@ type Client struct {
 	client    *http.Client
 	UserAgent string
 
-	Config    *ConfigService
-	Products  *ProductService
-	Taxes     *TaxService
-	Users     *UserService
-	Outlets   *OutletService
-	Registers *RegisterService
-	Suppliers *SupplierService
-	Customers *CustomerService
+	Config      *ConfigService
+	Products    *ProductService
+	NewProducts *NewProductService
+	Taxes       *TaxService
+	Users       *UserService
+	Outlets     *OutletService
+	Registers   *RegisterService
+	Suppliers   *SupplierService
+	Customers   *CustomerService
 }
 
 func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
@@ -49,6 +50,7 @@ func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
 	c := &Client{client: httpClient, UserAgent: userAgent}
 	c.Config = &ConfigService{client: c}
 	c.Products = &ProductService{client: c}
+	c.NewProducts = &NewProductService{client: c}
 	c.Taxes = &TaxService{client: c}
 	c.Users = &UserService{client: c}
 	c.Outlets = &OutletService{client: c}
@@ -61,8 +63,8 @@ func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
 
 func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Request, error) {
 
-	u := fmt.Sprintf("https://%s.vendhq.com/api/%s", store, urlStr)
-	fmt.Println(u)
+	url := fmt.Sprintf("https://%s%s%s", store, baseUrlString, urlStr)
+	fmt.Println(url)
 	buf := new(bytes.Buffer)
 	if body != nil {
 		err := json.NewEncoder(buf).Encode(body)
@@ -71,7 +73,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 		}
 	}
 
-	req, err := http.NewRequest(method, u, buf)
+	req, err := http.NewRequest(method, url, buf)
 	if err != nil {
 		return nil, err
 	}
