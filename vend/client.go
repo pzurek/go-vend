@@ -20,7 +20,7 @@ var (
 	password string
 )
 
-// Vend client which talks to the Vend API
+// Client talks to the Vend API
 type Client struct {
 
 	// HTTP client
@@ -38,6 +38,7 @@ type Client struct {
 	Customers   *CustomerService
 }
 
+// NewClient creates a new Vend client with given credentials
 func NewClient(st, usrname, passwd string, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
